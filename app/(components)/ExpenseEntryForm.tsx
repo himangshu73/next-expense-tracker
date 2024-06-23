@@ -3,7 +3,7 @@ import React from "react";
 const ExpenseEntryForm = () => {
   return (
     <div className="mb-4">
-      <form className="w-full max-w-md  bg-slate-300 p-4 rounded-lg shadow-md shadow-slate-500">
+      <form className=" bg-slate-300 p-4 rounded-lg shadow-md shadow-slate-500">
         <div className="mb-4">
           <label className="block mb-2 font-bold text-gray-700">Item</label>
           <input
