@@ -46,7 +46,7 @@ const ExpenseEntryForm = () => {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 rounded-md p-2 w-full"
+          className="bg-green-500 hover:bg-red-700 rounded-md p-2 w-full"
         >
           Add Item
         </button>
