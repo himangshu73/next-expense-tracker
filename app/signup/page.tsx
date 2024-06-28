@@ -37,9 +37,9 @@ const Signup: React.FC = (): JSX.Element => {
     });
 
     if (response.ok) {
-      console.log("Response OK");
+      alert("User Created Successfully");
     } else {
-      console.log("Response Not OK");
+      alert("Error Creating User");
     }
 
     console.log(user);
