@@ -16,8 +16,32 @@ const Signup: React.FC = (): JSX.Element => {
     password: "",
     confirmPassword: "",
   });
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (user.password !== user.confirmPassword) {
+      alert("Password do not match");
+      return;
+    }
+
+    const response = await fetch("/api/users/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: user.username,
+        email: user.email,
+        password: user.password,
+      }),
+    });
+
+    if (response.ok) {
+      console.log("Response OK");
+    } else {
+      console.log("Response Not OK");
+    }
+
     console.log(user);
   };
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
