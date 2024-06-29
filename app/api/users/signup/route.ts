@@ -8,7 +8,7 @@ interface UserData {
   password: string;
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest): Promise<NextResponse> {
   await connect();
 
   try {
@@ -40,4 +40,25 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+export async function GET(req: NextRequest): Promise<NextResponse> {
+  return NextResponse.json(
+    { message: "Get Method not allowed" },
+    { status: 405 }
+  );
+}
+
+export async function PUT(req: NextRequest): Promise<NextResponse> {
+  return NextResponse.json(
+    { message: "Put Method not allowed" },
+    { status: 405 }
+  );
+}
+
+export async function DELETE(req: NextRequest): Promise<NextResponse> {
+  return NextResponse.json(
+    { message: "Delete Method not allowed" },
+    { status: 405 }
+  );
 }

@@ -9,13 +9,10 @@ const Header = () => {
       </h1>
       <ul className="flex items-center gap-2 text-white p-4">
         <li className="hover:text-slate-500">
-          <Link href="/signup">SignuJp</Link>
+          <Link href="/signup">Signup</Link>
         </li>
         <li className="hover:text-slate-500">
           <Link href="/login">Login</Link>
-        </li>
-        <li className="hover:text-slate-500">
-          <Link href="#">Logout</Link>
         </li>
       </ul>
     </div>

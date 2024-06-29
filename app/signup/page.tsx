@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 
 interface User {
@@ -16,6 +17,8 @@ const Signup: React.FC = (): JSX.Element => {
     password: "",
     confirmPassword: "",
   });
+
+  const router = useRouter();
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -38,6 +41,7 @@ const Signup: React.FC = (): JSX.Element => {
 
     if (response.ok) {
       alert("User Created Successfully");
+      router.push("/")
     } else {
       alert("Error Creating User");
     }
