@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/app/dbConfig/dbConfig";
 import User from "@/models/userModel";
 
+const bcrypt = require("bcrypt");
+
 interface UserData {
   username: string;
   email: string;
@@ -23,10 +25,12 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       );
     }
 
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const newUser = new User({
       username,
       email,
-      password,
+      password: hashedPassword,
     });
 
     await newUser.save();
@@ -42,23 +46,3 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   }
 }
 
-export async function GET(req: NextRequest): Promise<NextResponse> {
-  return NextResponse.json(
-    { message: "Get Method not allowed" },
-    { status: 405 }
-  );
-}
-
-export async function PUT(req: NextRequest): Promise<NextResponse> {
-  return NextResponse.json(
-    { message: "Put Method not allowed" },
-    { status: 405 }
-  );
-}
-
-export async function DELETE(req: NextRequest): Promise<NextResponse> {
-  return NextResponse.json(
-    { message: "Delete Method not allowed" },
-    { status: 405 }
-  );
-}

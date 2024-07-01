@@ -1,8 +1,43 @@
+"use client";
+
+import { useState } from "react";
+
 const Login: React.FC = (): JSX.Element => {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      if (res.ok) {
+        console.log("Login Successfull");
+      }
+    } catch (error) {}
+  };
+
   return (
     <div className="flex flex-col justify-center items-center mt-24">
       <div className="w-full max-w-md">
-        <form className="p-4 w-full bg-green-300 rounded-md shadow-md">
+        <form
+          className="p-4 w-full bg-green-300 rounded-md shadow-md"
+          onSubmit={handleSubmit}
+        >
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -15,6 +50,8 @@ const Login: React.FC = (): JSX.Element => {
               id="email"
               name="email"
               placeholder="Email"
+              value={user.email}
+              onChange={handleChange}
               required
               className="px-3 py-2 block w-full rounded-md bg-white border border-slate-300 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             />
@@ -31,6 +68,8 @@ const Login: React.FC = (): JSX.Element => {
               id="password"
               name="password"
               placeholder="Password"
+              value={user.password}
+              onChange={handleChange}
               required
               className="px-3 py-2 block w-full rounded-md bg-white border border-slate-300 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             />
