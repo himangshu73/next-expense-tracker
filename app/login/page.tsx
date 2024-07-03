@@ -1,8 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../utils/AuthContext";
 
 const Login: React.FC = (): JSX.Element => {
+  const router = useRouter();
+
+  const { setLoggedIn } = useAuth();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -26,7 +31,9 @@ const Login: React.FC = (): JSX.Element => {
         body: JSON.stringify(user),
       });
       if (res.ok) {
+        setLoggedIn(true);
         console.log("Login Successfull");
+        router.push("/");
       }
     } catch (error) {}
   };
