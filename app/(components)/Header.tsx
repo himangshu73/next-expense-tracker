@@ -7,7 +7,7 @@ import { useAuth } from "../utils/AuthContext";
 
 const Header = () => {
   const router = useRouter();
-  const { setLoggedIn } = useAuth();
+  const { loggedIn, setLoggedIn } = useAuth();
 
   const handleLogout = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -33,18 +33,23 @@ const Header = () => {
         <Link href="/">Expense Tracker</Link>
       </h1>
       <ul className="flex items-center gap-2 text-white p-4">
-        <li className="hover:text-slate-500">
-          <Link href="/signup">Signup</Link>
-        </li>
-        <li className="hover:text-slate-500">
-          <Link href="/login">Login</Link>
-        </li>
-        <li
-          className="hover:text-slate-500 cursor-pointer"
-          onClick={handleLogout}
-        >
-          Logout
-        </li>
+        {loggedIn ? (
+          <li
+            className="hover:text-slate-500 cursor-pointer"
+            onClick={handleLogout}
+          >
+            Logout
+          </li>
+        ) : (
+          <>
+            <li className="hover:text-slate-500">
+              <Link href="/signup">Signup</Link>
+            </li>
+            <li className="hover:text-slate-500">
+              <Link href="/login">Login</Link>
+            </li>
+          </>
+        )}
       </ul>
     </div>
   );
