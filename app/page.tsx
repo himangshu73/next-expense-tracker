@@ -16,9 +16,6 @@ export default function Home() {
       </div>
       <div className="w-full md:w-1/2 flex flex-col p-4 justify-between">
         <ExpenseCard />
-        <ExpenseCard />
-        <ExpenseCard />
-        <ExpenseCard />
       </div>
     </div>
   );
